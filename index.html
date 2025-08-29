@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaytiaWise - Subscription Manager</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js for Graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-body">
+
+    <!-- Home Page -->
+    <div id="home-page" class="page flex-col items-center justify-center min-h-screen bg-off-white dark:bg-gray-900 text-center p-4">
+        <div class="max-w-4xl">
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-text dark:text-off-white font-display">Welcome to SpaytiaWise</h1>
+            <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                Your all-in-one solution to master your recurring expenses.
+            </p>
+            <div class="mt-10 grid md:grid-cols-3 gap-8 text-left">
+                <div class="bg-beige dark:bg-gray-800 p-6 rounded-lg shadow-sm transition-transform hover:-translate-y-2">
+                    <h2 class="text-xl font-bold mb-2 text-gray-text dark:text-off-white font-display">Track Everything</h2>
+                    <p class="text-gray-600 dark:text-gray-400">Consolidate all your subscriptions, from entertainment to utility bills, in one intuitive calendar view.</p>
+                </div>
+                <div class="bg-beige dark:bg-gray-800 p-6 rounded-lg shadow-sm transition-transform hover:-translate-y-2">
+                    <h2 class="text-xl font-bold mb-2 text-gray-text dark:text-off-white font-display">Gain AI Insights</h2>
+                    <p class="text-gray-600 dark:text-gray-400">Leverage the power of AI to analyze your spending, identify redundant services, and discover new ways to save.</p>
+                </div>
+                <div class="bg-beige dark:bg-gray-800 p-6 rounded-lg shadow-sm transition-transform hover:-translate-y-2">
+                    <h2 class="text-xl font-bold mb-2 text-gray-text dark:text-off-white font-display">Chat with Your Finances</h2>
+                    <p class="text-gray-600 dark:text-gray-400">Have a question? Our AI chatbot is available 24/7 to provide instant answers about your subscriptions.</p>
+                </div>
+            </div>
+            <button id="get-started-btn" class="mt-10 text-lg px-8 py-3 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition-transform hover:-translate-y-1">Get Started</button>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login-page" class="page items-center justify-center h-screen bg-beige dark:bg-gray-900">
+        <div class="w-full max-w-sm p-8 space-y-6 bg-off-white dark:bg-gray-800 rounded-lg shadow-md">
+            <h1 class="text-2xl font-bold text-center text-gray-text dark:text-off-white font-display">Get Started with SpaytiaWise</h1>
+            
+            <form id="email-signup-form" class="space-y-4">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-text dark:text-gray-300">Email address</label>
+                    <input id="email" name="email" type="email" required class="mt-1 block w-full px-3 py-2 bg-off-white dark:bg-gray-700 border border-gray-divider dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-orange-500" placeholder="you@example.com" />
+                </div>
+                 <div>
+                    <label for="password"class="block text-sm font-medium text-gray-text dark:text-gray-300">Password</label>
+                    <input id="password" name="password" type="password" required class="mt-1 block w-full px-3 py-2 bg-off-white dark:bg-gray-700 border border-gray-divider dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-orange-500" placeholder="••••••••" />
+                </div>
+                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">Sign Up with Email</button>
+            </form>
+
+            <div class="flex items-center justify-center">
+                <hr class="w-full border-gray-divider dark:border-gray-600" />
+                <span class="px-2 text-sm text-gray-500 bg-off-white dark:bg-gray-800">OR</span>
+                <hr class="w-full border-gray-divider dark:border-gray-600" />
+            </div>
+
+            <button id="google-signin-btn" class="w-full flex items-center justify-center py-2 px-4 border border-gray-divider rounded-lg shadow-sm bg-off-white dark:bg-gray-700 text-gray-text dark:text-gray-300 hover:bg-orange-500 hover:text-white">
+                Continue with Google
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Application Layout -->
+    <div id="app-container" class="h-screen bg-beige text-gray-text font-body">
+        
+        <!-- Sidebar -->
+        <aside id="sidebar" class="hidden md:flex flex-col w-64 h-screen px-4 py-8 bg-off-white dark:bg-gray-800 border-r border-gray-divider dark:border-gray-700">
+            <h2 class="text-3xl font-bold text-center text-gray-text dark:text-off-white font-display">SpaytiaWise</h2>
+            <nav class="flex-1 mt-6">
+                <a href="#dashboard" class="nav-link flex items-center px-4 py-2 mt-2 text-gray-text dark:text-gray-300 transition-colors duration-200 transform rounded-lg hover:bg-orange-500 hover:text-white dark:hover:bg-orange-600 relative group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                    <span class="mx-4">Dashboard</span>
+                </a>
+                <a href="#manage" class="nav-link flex items-center px-4 py-2 mt-2 text-gray-text dark:text-gray-300 transition-colors duration-200 transform rounded-lg hover:bg-orange-500 hover:text-white dark:hover:bg-orange-600 relative group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 10h16M4 14h16M4 18h16" /></svg>
+                    <span class="mx-4">Manage</span>
+                </a>
+                <a href="#reports" class="nav-link flex items-center px-4 py-2 mt-2 text-gray-text dark:text-gray-300 transition-colors duration-200 transform rounded-lg hover:bg-orange-500 hover:text-white dark:hover:bg-orange-600 relative group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                    <span class="mx-4">Reports</span>
+                </a>
+                 <a href="#sms-feed" class="nav-link flex items-center px-4 py-2 mt-2 text-gray-text dark:text-gray-300 transition-colors duration-200 transform rounded-lg hover:bg-orange-500 hover:text-white dark:hover:bg-orange-600 relative group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0l-8-4-8 4m16 0l-8 4-8-4" /></svg>
+                    <span class="mx-4">SMS Feed</span>
+                </a>
+            </nav>
+            <div id="logout-section">
+                <button id="logout-button" class="flex items-center w-full px-4 py-2 mt-2 text-gray-text dark:text-gray-300 transition-colors duration-200 transform rounded-lg hover:bg-orange-500 hover:text-white dark:hover:bg-orange-600 relative group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+                    <span class="mx-4">Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header class="w-full px-6 py-4 bg-off-white dark:bg-gray-800 shadow-sm flex items-center justify-end space-x-4 sticky top-0 z-30">
+                 <div class="relative">
+                    <button id="notification-button" class="p-2 rounded-full text-gray-text dark:text-gray-300 bg-beige dark:bg-gray-700 hover:bg-orange-500 dark:hover:bg-gray-600 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+                        <span id="notification-dot" class="absolute top-0 right-0 h-2.5 w-2.5 bg-terracotta rounded-full hidden"></span>
+                    </button>
+                    <div id="notification-dropdown" class="absolute right-0 mt-2 w-64 bg-off-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden z-20 border border-gray-divider dark:border-gray-700 hidden">
+                        <div class="p-4 font-semibold border-b border-gray-divider text-gray-text dark:text-off-white">Notifications</div>
+                        <div id="notification-list" class="divide-y divide-gray-divider dark:divide-gray-700">
+                           <div class="p-4 text-sm text-gray-500">No new notifications</div>
+                        </div>
+                    </div>
+                </div>
+                <button id="theme-toggle" class="p-2 rounded-full text-gray-text dark:text-gray-300 bg-beige dark:bg-gray-700 hover:bg-orange-500 dark:hover:bg-gray-600 transition-colors">
+                    <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                    <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                </button>
+            </header>
+            
+            <!-- Page Content Area -->
+            <main id="main-content" class="flex-1 overflow-x-hidden overflow-y-auto p-8">
+                <!-- All pages will be injected here -->
+            </main>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="fixed inset-0 bg-black bg-opacity-30 z-50 flex justify-center items-center hidden">
+        <div id="edit-modal-content" class="bg-off-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md m-4">
+            <!-- Modal content will be injected here -->
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
