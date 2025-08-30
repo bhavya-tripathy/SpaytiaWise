@@ -1,0 +1,40 @@
+:root {
+    --color-beige: #F5F5DC;
+    --color-peach: #FFDAB9;
+    --color-peach-dark: #FFCBA4;
+    --color-off-white: #FCFCFC;
+    --color-gray-text: #4A4A4A;
+    --color-gray-divider: #EAEAEA;
+    --color-terracotta: #E57373;
+    --color-terracotta-dark: #D32F2F;
+    --color-orange: #F97316;
+    --color-orange-dark: #EA580C;
+}
+.dark {
+    --color-beige: #2a2a2a;
+    --color-peach: #E57373;
+    --color-peach-dark: #D32F2F;
+    --color-off-white: #1a1a1a;
+    --color-gray-text: #E0E0E0;
+    --color-gray-divider: #3a3a3a;
+    --color-orange: #F97316;
+    --color-orange-dark: #EA580C;
+}
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-off-white);
+    color: var(--color-gray-text);
+    transition: background-color 0.3s, color 0.3s;
+}
+.font-display { font-family: 'Poppins', sans-serif; }
+.font-body { font-family: 'Inter', sans-serif; }
+
+.page, #app-container {
+    display: none;
+}
+.page.active, #app-container.active {
+    display: flex; 
+}
+#home-page.active, #login-page.active {
+    display: flex;
+}
